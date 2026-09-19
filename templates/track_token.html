@@ -1,0 +1,50 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track Token</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Track Your Token</h1>
+
+        <p class="subtitle">
+            Enter your token number to check your queue status.
+        </p>
+
+        <div class="card">
+
+            <h2>Enter Token Number</h2>
+
+            <form action="/track-token" method="POST">
+
+                <input type="text"
+                       name="token_number"
+                       placeholder="Example: B001"
+                       required>
+
+                <br><br>
+
+                <button type="submit">
+                    Track Token
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Admin Dashboard</h1>
+
+        <p class="subtitle">
+            Manage and monitor the queue
+        </p>
+
+        <div class="card">
+
+            <h2>Select Service</h2>
+
+            <form action="/admin" method="GET">
+
+                <select name="service"
+                        onchange="this.form.submit()">
+
+                    <option value="Billing"
+                        {% if selected_service == "Billing" %}selected{% endif %}>
+                        Billing
+                    </option>
+
+                    <option value="Enquiry"
+                        {% if selected_service == "Enquiry" %}selected{% endif %}>
+                        Enquiry
+                    </option>
+
+                    <option value="Registration"
+                        {% if selected_service == "Registration" %}selected{% endif %}>
+                        Registration
+                    </option>
+
+                    <option value="General Consultation"
+                        {% if selected_service == "General Consultation" %}selected{% endif %}>
+                        General Consultation
+                    </option>
+
+                </select>
+
+            </form>
+
+            <br>
+
+            <h2>Current Queue</h2>
+
+            <p>
+                <strong>Current Token:</strong>
+                {{ current_token }}
+            </p>
+
+            <p>
+                <strong>Waiting Tokens:</strong>
+                {{ waiting_count }}
+            </p>
+
+            <br>
+
+            <form action="/call-next" method="POST">
+
+                <input type="hidden"
+                       name="service"
+                       value="{{ selected_service }}">
+
+                <button type="submit">
+                    Call Next
+                </button>
+
+            </form>
+
+            <hr>
+
+            <h3>Waiting Queue</h3>
+
+            {% if tokens %}
+
+                {% for token in tokens %}
+
+                    <p>
+                        <strong>{{ token.token_number }}</strong>
+                        -
+                        {{ token.name }}
+                        -
+                        {{ token.service }}
+                    </p>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>No waiting tokens.</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+

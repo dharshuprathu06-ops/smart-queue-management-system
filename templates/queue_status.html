@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Queue Status</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Queue Status</h1>
+
+        <p class="subtitle">
+            Track your token and waiting position
+        </p>
+
+        <div class="card">
+
+            <h2>Your Token</h2>
+
+            <h1>{{ token_number }}</h1>
+
+            <p>
+                <strong>Name:</strong> {{ name }}
+            </p>
+
+            <p>
+                <strong>Service:</strong> {{ service }}
+            </p>
+
+            <hr>
+
+            <p>
+                <strong>Current Token:</strong>
+                {{ current_token }}
+            </p>
+
+            <p>
+                <strong>People Before You:</strong>
+                {{ people_before }}
+            </p>
+
+            <p>
+                <strong>Estimated Waiting Time:</strong>
+                {{ waiting_time }} minutes
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                {{ status }}
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
